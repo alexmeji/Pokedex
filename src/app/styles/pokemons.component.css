@@ -1,0 +1,8 @@
+.pokemon-name {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.card-pokemon:hover {
+  transform: scale(1.05);
+}

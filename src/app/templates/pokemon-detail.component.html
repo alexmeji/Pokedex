@@ -1,0 +1,93 @@
+<div class="container">
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <div *ngIf="pokeData != null" class="card-panel grey lighten-5 z-depth-1">
+        <h3 class="pokemon-name">{{pokeData.name}}</h3>
+        <div class="row">
+          <div class="col s12 m6 l6 ">
+            <img src="{{pokeData.picture}}" class="pokemon-picture">
+          </div>
+          <div class="col s12 m6 l6">
+            <div class="row attributes-section">
+              <div class="col s6 m6 l6 ">
+                <ul>
+                  <li>
+                    <span class="attribute-title">Height</span>
+                    <span class="attribute-value">{{pokeData.height}} cm</span>
+                  </li>
+                  <li>
+                    <span class="attribute-title">Weight</span>
+                    <span class="attribute-value">{{pokeData.weight}} kg</span>
+                  </li>
+                  <li>
+                    <span class="attribute-title">Attack</span>
+                    <span class="attribute-value">{{pokeData.attack}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col s6 m6 l6">
+                <ul>
+                  <li>
+                    <span class="attribute-title">Experience</span>
+                    <span class="attribute-value">{{pokeData.exp}}</span>
+                  </li>
+                  <li>
+                    <span class="attribute-title">Healt</span>
+                    <span class="attribute-value">{{pokeData.hp}}</span>
+                  </li>
+                  <li>
+                    <span class="attribute-title">Defense</span>
+                    <span class="attribute-value">{{pokeData.defense}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+                <h5 left-align>Types</h5>
+                <div *ngFor="let type of pokeData.types">
+                  <a class="poketype btn">{{type.name}}</a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h3 class="pokemon-name">Evolutions</h3>
+          <div class="col s12 m12 l12">
+            <div *ngFor="let evolution of pokeData.evolutions">
+              <div class="col s12 m4 l2">
+                <div class="card grey lighten-2 card-pokemon z-depth-3 waves-effect waves-light">
+                  <div (click)="onSelectPokemon(evolution.pokemon)">
+                    <div class="card-image">
+                        <img class="responsive-img" src="{{evolution.picture}}">
+                      </div>
+                      <div class="card-content white">
+                        <span class="card-title grey-text darken-3 pokemon-name-evolution">
+                          {{evolution.to}}
+                        </span>
+                      </div>
+                  </div>
+                  <div class="card-action grey lighten-2">
+                    <ul>
+                      <li>
+                        <span><b>Level: </b></span>
+                        <span >{{evolution.level}}</span>
+                      </li>
+                      <li>
+                        <span><b>Method: </b></span>
+                        <span >{{evolution.methodName}}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <a class="btn right red darken-4" (click)="goBack()">Back</a>
+            <a class="btn left pink darken-1" (click)="saveFavorite(pokeData.pokemon)">Add Favorite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

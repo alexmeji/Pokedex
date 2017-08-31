@@ -1,0 +1,32 @@
+<div class="container">
+  <h3 class="center-align">Pokemones</h3>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <div class="row center-align">
+        <div *ngFor="let pokemon of pokemons">
+          <div class="col s12 m4 l3">
+            <div class="card grey lighten-2 card-pokemon z-depth-3 waves-effect waves-light">
+              <div (click)="onSelectPokemon(pokemon)">
+                <div class="card-image">
+                    <img class="responsive-img" src="{{pokemon.picture}}">
+                  </div>
+                  <div class="card-content white">
+                    <span class="card-title grey-text darken-3 pokemon-name">
+                      {{pokemon.name}}
+                    </span>
+                  </div>
+              </div>
+              <div class="card-action white" (click)="saveFavorite(pokemon)">
+                <a class="red-text darken-4">Add Favorite</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+      <a class="btn right amber darken-4" (click)="loadPokemons()">Load More</a>
+  </div>
+</div>
+

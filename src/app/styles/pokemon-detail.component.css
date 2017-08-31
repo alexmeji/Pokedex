@@ -1,0 +1,46 @@
+.pokemon-picture {
+  width: 80%;
+}
+
+.pokemon-name {
+  text-align: center;
+  text-transform: capitalize;
+  font-family: 'Just Another Hand', cursive;
+  font-size: 86px;
+}
+
+.pokemon-name-evolution {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.attributes-section {
+  background: #26A6D9;
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.attribute-title {
+  color: white;
+  float: left;
+  clear: both;
+  white-space: normal;
+  word-break: break-word;
+  font-family: 'Hind', sans-serif;
+  font-size: 18px;
+}
+
+.attribute-value {
+  float: left;
+  clear: both;
+  white-space: normal;
+  word-break: break-word;
+  font-family: 'Hind', sans-serif;
+  font-size: 16px;
+}
+
+.poketype {
+  float: left;
+  margin-left: 10px;
+}

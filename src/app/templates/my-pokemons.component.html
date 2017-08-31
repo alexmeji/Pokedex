@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="center-align">My Pokemons</h1>
+  <div class="row">
+    <div class="col s12 m12 l12">
+      <div *ngIf="currentUser != null" class="row center-align">
+          <div *ngFor="let pokemon of pokemons">
+            <div class="col s8 m4 l2">
+              <div class="center-align card grey lighten-2 card-pokemon z-depth-3 waves-effect waves-light">
+                <div (click)="onSelectPokemon(pokemon)">
+                  <div class="card-image">
+                      <img src="{{pokemon.picture}}">
+                    </div>
+                    <div class="card-content white">
+                      <span class="card-title grey-text darken-3 pokemon-name">
+                        {{pokemon.name}}
+                      </span>
+                    </div>
+                </div>
+                <div class="card-action white" (click)="deleteFavorite(pokemon)">
+                  <a class="red-text darken-4">Delete Favorite</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div *ngIf="currentUser == null" class="row center-align">
+          <h3 class="center-align">You have to be loggued</h3>
+          <img src="http://fc01.deviantart.net/fs70/f/2011/074/0/c/pikachu_xd_by_xinsaneazn-d3bp71u.jpg" alt="" class="responsive-img">
+      </div>
+    </div>
+  </div>
+</div>

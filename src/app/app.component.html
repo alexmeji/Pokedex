@@ -1,20 +1,111 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" href="https://blog.angular.io//">Angular blog</a></h2>
-  </li>
-</ul>
+<nav>
+  <div class="nav-wrapper">
+    <a [routerLink]="['pokemons']" class="brand-logo center">{{title}}</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="left hide-on-med-and-down fixed">
+      <li routerLinkActive="active">
+        <a [routerLink]="['pokemons']">Pokemones</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['mypokemons']">My Pokemones</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['author']">Author</a>
+      </li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li routerLinkActive="active">
+        <a [routerLink]="['pokemons']">Pokemones</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['mypokemons']">My Pokemones</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['author']">Author</a>
+      </li>
+      <li><div class="divider"></div></li>
+      <li *ngIf="currentUser == null">
+        <a href="#modal1" class="modal-trigger" (click)="openModalSignUp()">Sign Up</a>
+      </li>
+      <li *ngIf="currentUser == null">
+        <a href="#modal2" class="modal-trigger" (click)="openModalSignIn()">Sign In</a>
+      </li>
+      <li *ngIf="currentUser != null"><a (click)="signOut()" class="dropdown-button" data-activates="dropdown1">{{ userName }}<i class="material-icons right"></i></a></li>
+    </ul>
+    <div *ngIf="currentUser == null">
+      <ul class="right hide-on-med-and-down fixed">
+          <li>
+            <a href="#modal1" class="modal-trigger" (click)="openModalSignUp()">Sign Up</a>
+          </li>
+          <li>
+            <a href="#modal2" class="modal-trigger" (click)="openModalSignIn()">Sign In</a>
+          </li>
+        </ul>
+    </div>
+    <div *ngIf="currentUser != null">
+      <ul class="right hide-on-med-and-down fixed">
+          <li><a (click)="signOut()" class="dropdown-button" data-activates="dropdown1">{{ userName }}<i class="material-icons right"></i></a></li>
+        </ul>
+      </div>
+  </div>
+</nav>
 
+<div id="modal1" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+  <div class="modal-content">
+    <h4>Register to Pokedex</h4>
+    <p>You can have a favorite Pokemons</p>
+    <div class="row">
+      <div class="col s3"></div>
+      <div class="col s6">
+        <form #templateFormSignUp="ngForm" (ngSubmit)="submitForm(templateFormSignUp.value)">
+          <div class="input-field">
+            <input id="name" type="text" class="validate" name="name"  ngModel #name="ngModel">
+            <label class="active" for="name">Your Name</label>
+          </div>
+          <div class="input-field">
+            <input id="email" type="email" class="validate" name="email" ngModel #email="ngModel">
+            <label class="active" for="email">Email</label>
+          </div>
+          <div class="input-field">
+            <input id="password" type="password" class="validate" name="password" ngModel #password="ngModel">
+            <label class="active" for="password">Password</label>
+          </div>
+          <button type="submit" (click)="templateFormSignUp.submit()" class="right waves-effect waves-light btn">Sign Up</button>
+        </form>
+      </div>
+      <div class="col s3"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+  </div>
+</div>
+
+<div id="modal2" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+    <div class="modal-content">
+      <h4>Login to Pokedex</h4>
+      <p>You can have a favorite Pokemons</p>
+      <div class="row">
+        <div class="col s3"></div>
+        <div class="col s6">
+          <form #templateFormLogin="ngForm" (ngSubmit)="submitLogin(templateFormLogin.value)">
+            <div class="input-field">
+              <input id="email" type="email" class="validate" name="email" ngModel #email="ngModel">
+              <label class="active" for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input id="password" type="password" class="validate" name="password" ngModel #password="ngModel">
+              <label class="active" for="password">Password</label>
+            </div>
+            <button type="submit" (click)="templateFormLogin.submit()" class="right waves-effect waves-light btn">Sign In</button>
+          </form>
+        </div>
+        <div class="col s3"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Close</a>
+    </div>
+  </div>
+
+<router-outlet></router-outlet>
